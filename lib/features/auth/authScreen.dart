@@ -6,13 +6,14 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../core/app_constants.dart';
 import '../../core/widgets/custom_app_buttom.dart';
+import '../home_screen/home_screen.dart';
 import 'model/user_model.dart';
-class HomeScreen extends StatefulWidget {
-      const HomeScreen({super.key});
+class AuthScreen extends StatefulWidget {
+      const AuthScreen({super.key});
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<AuthScreen> createState() => _AuthScreenState();
 }
-class _HomeScreenState extends State<HomeScreen> {
+class _AuthScreenState extends State<AuthScreen> {
   final user=Hive.box<UserModel>(AppConstants.userBox).getAt(0);
 
   final ImagePicker picker = ImagePicker();
@@ -79,6 +80,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       onTapOutside: (v){
                          FocusScope.of(context).unfocus();
                       },
+                      onChanged: (value) {
+                        setState(() {
+
+                        });
+                      },
                       decoration: InputDecoration(
                         hintText: "Enter your name",
                         enabledBorder: OutlineInputBorder(),
@@ -97,16 +103,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         print("user ${user?.name}");
                         Hive.box<UserModel>(AppConstants.userBox).add(UserModel(name: nameController.text,
                             image: image?.path??"")).then((value){
-                          print("done");
+                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+                             print("done");
+
                         })
                         .catchError((e){
                           print(e);
                         });
 
                         } ,),
-                    Text(user?.name??"",),
-                    Image.file(File(user?.image??"")),
-
                   ],
                 ),
               ),

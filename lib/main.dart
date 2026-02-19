@@ -3,7 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tack/task_app.dart';
 
 import 'core/app_constants.dart';
-import 'features/home/model/user_model.dart';
+import 'features/auth/model/user_model.dart';
 
     void main()async{
    await   Hive.initFlutter();

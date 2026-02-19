@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
-import '../home/home_screen.dart';
+import '../auth/AuthScreen.dart';
+
 
 
 class SplashScreen extends StatefulWidget {
@@ -20,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
       Future.delayed(Duration(seconds: 4),(){
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> AuthScreen()));
       });
     super.initState();
   }
