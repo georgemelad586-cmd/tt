@@ -2,12 +2,16 @@
 
 
       import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:tack/core/widgets/custom_app_buttom.dart';
 
+
+
 class AddTaskRow extends StatelessWidget {
-        const AddTaskRow({super.key});
+  final void Function()?onPressed;
+        const AddTaskRow({super.key, this.onPressed});
 
         @override
         Widget build(BuildContext context) {
@@ -23,7 +27,9 @@ class AddTaskRow extends StatelessWidget {
               )),
               SizedBox(
                   width: 150.w ,
-                  child: CustomAppButtom(text: " + Add Task",onPressed: (){}))
+                  child: CustomAppButtom(text: " + Add Task",onPressed: onPressed
+
+                  ))
 ]
           );
         }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tack/core/widgets/custom_text_form_field.dart';
 import '../../core/app_constants.dart';
 import '../../core/widgets/custom_app_buttom.dart';
 import '../home_screen/home_screen.dart';
@@ -15,7 +16,6 @@ class AuthScreen extends StatefulWidget {
 }
 class _AuthScreenState extends State<AuthScreen> {
   final user=Hive.box<UserModel>(AppConstants.userBox).getAt(0);
-
   final ImagePicker picker = ImagePicker();
   XFile? image;
   TextEditingController nameController = TextEditingController();
@@ -25,7 +25,6 @@ class _AuthScreenState extends State<AuthScreen> {
     setState(() {
 
     });
-
   }
   void openGallery()async{
   image =  await picker.pickImage(source: ImageSource.gallery);
@@ -75,29 +74,7 @@ class _AuthScreenState extends State<AuthScreen> {
                            Divider(
                              color: Colors.indigo,
                            ),
-                    TextFormField(
-                      controller: nameController ,
-                      onTapOutside: (v){
-                         FocusScope.of(context).unfocus();
-                      },
-                      onChanged: (value) {
-                        setState(() {
-
-                        });
-                      },
-                      decoration: InputDecoration(
-                        hintText: "Enter your name",
-                        enabledBorder: OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.indigo,
-
-                              )
-                            )
-
-                      ),
-
-                    ),
+                         CustomTextFormField(nameController: nameController,hintText: "Enter Your Name",),
                       CustomAppButtom(text: "Done"
                       ,onPressed:(){
                         print("user ${user?.name}");

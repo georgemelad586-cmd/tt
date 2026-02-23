@@ -25,19 +25,22 @@ class TaskItem extends StatelessWidget {
        child:Row(
 
          children: [
-           Padding(
-             padding: const EdgeInsets.all(16.0),
-             child: Column(
-             spacing: 10.h,
-                 crossAxisAlignment: CrossAxisAlignment.start,
-                 children: [
-                      Text(task.title,style: TextStyle(fontSize: 20.sp,color: Colors.white,),),
-                        Text("${task.startTime} - ${task.endTime}",style: TextStyle(fontSize: 15.sp,color: Colors.white,),),
-                            Text(task.description,style: TextStyle(fontSize: 15.sp,color: Colors.white,),)
-                 ]
 
-               ),
-           ),
+             Expanded(
+               child: Column(
+
+               spacing: 10.h,
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: [
+                        Text(task.title,style: TextStyle(fontSize: 20.sp,color: Colors.white,),),
+                          Text(task.date,style: TextStyle(fontSize: 15.sp,color: Colors.white,),),
+                          Text("${task.startTime} - ${task.endTime}",style: TextStyle(fontSize: 15.sp,color: Colors.white,),),
+                              Text(task.description,style: TextStyle(fontSize: 15.sp,color: Colors.white,),)
+                   ]
+               
+                 ),
+             ),
+
            SizedBox(width: 300,),
            Container(
              width: 2.w,
