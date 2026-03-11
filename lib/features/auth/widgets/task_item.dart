@@ -1,8 +1,3 @@
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,45 +9,65 @@ class TaskItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Container(
-
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12.r),
-            color: task.color,
+    bool isCompleted = task.statusText == 'completed';
+    return Container(
+      padding: EdgeInsets.all(12.r),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12.r),
+        color: Color(task.color).withOpacity(isCompleted ? 0.6 : 1.0),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  task.title,
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    decoration: isCompleted ? TextDecoration.lineThrough : null,
+                  ),
+                ),
+                SizedBox(height: 8.h),
+                Row(
+                  children: [
+                    Icon(Icons.access_time, color: Colors.white, size: 16.sp),
+                    SizedBox(width: 4.w),
+                    Text(
+                      "${task.startTime} - ${task.endTime}",
+                      style: TextStyle(fontSize: 14.sp, color: Colors.white),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 8.h),
+                Text(
+                  task.description,
+                  style: TextStyle(fontSize: 14.sp, color: Colors.white),
+                ),
+              ],
+            ),
           ),
-       child:Row(
-
-         children: [
-
-             Expanded(
-               child: Column(
-
-               spacing: 10.h,
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                        Text(task.title,style: TextStyle(fontSize: 20.sp,color: Colors.white,),),
-                          Text(task.date,style: TextStyle(fontSize: 15.sp,color: Colors.white,),),
-                          Text("${task.startTime} - ${task.endTime}",style: TextStyle(fontSize: 15.sp,color: Colors.white,),),
-                              Text(task.description,style: TextStyle(fontSize: 15.sp,color: Colors.white,),)
-                   ]
-               
-                 ),
-             ),
-
-           SizedBox(width: 300,),
-           Container(
-             width: 2.w,
-             height: 100.h,
-             color: Colors.white,
-           ),
-            RotatedBox(
-                quarterTurns: 3,
-                child: Text("To Do",style: TextStyle(fontSize: 20.sp,color: Colors.white,),))
-
-         ]
-       ) ,
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 10.w),
+            width: 1.w,
+            height: 60.h,
+            color: Colors.white.withOpacity(0.5),
+          ),
+          RotatedBox(
+            quarterTurns: 3,
+            child: Text(
+              isCompleted ? "COMPLETED" : "TODO",
+              style: TextStyle(
+                fontSize: 14.sp,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
